@@ -13,4 +13,6 @@ public interface EmployeeService {
 
   void deleteEmployee(Long employeeId) throws EmployeeNotFoundException;
 
+  EmployeeDto updateEmployee(EmployeeDto employeeDto) throws EmployeeNotFoundException;
+
 }
