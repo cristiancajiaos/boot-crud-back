@@ -2,8 +2,10 @@ package com.example.bootcrudback.service;
 
 import com.example.bootcrudback.dto.EmployeeDto;
 import com.example.bootcrudback.entity.Employee;
+import com.example.bootcrudback.exception.EmployeeNotFoundException;
 import com.example.bootcrudback.mapper.EmployeeMapper;
 import com.example.bootcrudback.repository.EmployeeRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     Employee employee = EmployeeMapper.mapToEmployee(employeeDto);
     Employee createdEmployee = employeeRepository.save(employee);
     return EmployeeMapper.mapToEmployeeDto(createdEmployee);
+  }
+
+  @Override
+  public EmployeeDto getEmployeeById(Long id) throws EmployeeNotFoundException {
+    Optional<Employee> employee = employeeRepository.findById(id);
+    if (employee.isEmpty()) {
+      throw new EmployeeNotFoundException("Employee with id - " + id + " not found");
+    }
+    return EmployeeMapper.mapToEmployeeDto(employee.get());
   }
 }
