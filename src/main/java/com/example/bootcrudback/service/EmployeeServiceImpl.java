@@ -40,13 +40,13 @@ public class EmployeeServiceImpl implements EmployeeService {
   }
 
   @Override
-  public void deleteEmployee(Long employeeId) throws EmployeeNotFoundException {
-    Optional<Employee> employee = employeeRepository.findById(employeeId);
-    if (employee.isEmpty()) {
+  public EmployeeDto deleteEmployee(Long employeeId) throws EmployeeNotFoundException {
+    Optional<Employee> retrievedEmployee = employeeRepository.findById(employeeId);
+    if (retrievedEmployee.isEmpty()) {
       throw new EmployeeNotFoundException("Employee with id - " + employeeId + " not found");
     }
     employeeRepository.deleteById(employeeId);
-
+    return EmployeeMapper.mapToEmployeeDto(retrievedEmployee.get());
   }
 
   @Override

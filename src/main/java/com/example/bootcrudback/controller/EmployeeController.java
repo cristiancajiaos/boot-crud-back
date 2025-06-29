@@ -47,10 +47,10 @@ public class EmployeeController {
   }
 
   @DeleteMapping(value = "/employee/{employeeId}")
-  public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("employeeId") Long employeeId)
+  public ResponseEntity<EmployeeDto> deleteEmployee(@PathVariable("employeeId") Long employeeId)
       throws EmployeeNotFoundException {
-    employeeService.deleteEmployee(employeeId);
-    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    EmployeeDto deletedEmployee = employeeService.deleteEmployee(employeeId);
+    return new ResponseEntity<>(deletedEmployee, HttpStatus.OK);
   }
 
   @PutMapping(value = "/employee")
