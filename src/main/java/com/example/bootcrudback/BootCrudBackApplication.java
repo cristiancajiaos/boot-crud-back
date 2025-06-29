@@ -13,6 +13,7 @@ public class BootCrudBackApplication {
     SpringApplication.run(BootCrudBackApplication.class, args);
   }
 
+  /*
   @Bean
   public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
@@ -25,5 +26,6 @@ public class BootCrudBackApplication {
     };
 
   }
+  */
 
 }
