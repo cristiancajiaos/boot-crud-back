@@ -20,6 +20,7 @@ public class BootCrudBackApplication {
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/employees").allowedOrigins("http://localhost:4200");
         registry.addMapping("/employee").allowedOrigins("http://localhost:4200");
+        registry.addMapping("/employee/{employeeId}").allowedOrigins("http://localhost:4200");
       }
     };
 
